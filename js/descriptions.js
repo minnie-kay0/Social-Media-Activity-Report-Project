@@ -13,6 +13,7 @@ function parseTweets(runkeeper_tweets) {
     document.getElementById("searchText").innerText = "";
 }
 
+// dynamic updates based on user input in search box 
 function addEventHandlerForSearch() {
     const searchBox = document.getElementById("textFilter"); 
     const tableBody = document.getElementById("tweetTable"); 
@@ -28,11 +29,14 @@ function addEventHandlerForSearch() {
             return;
         }
 
+        // dynamically filtering table
         const filteredTweets = writtenTweets.filter(tweet => tweet.text.toLowerCase().includes(searchTerm));
 
+        // dynamically updating table values 
         document.getElementById("searchText").innerText = searchTerm;
         document.getElementById("searchCount").innerText = filteredTweets.length;
 
+        // dynamically displaying table values
         filteredTweets.forEach((tweet, index) => {
             const rowHTML = tweet.getHTMLTableRow(index + 1);
             tableBody.insertAdjacentHTML('beforeend', rowHTML);
